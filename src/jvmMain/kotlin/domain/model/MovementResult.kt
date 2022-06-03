@@ -1,4 +1,4 @@
-package core.model
+package domain.model
 
 sealed interface MovementResult {
     object EmptyOrigin: MovementResult

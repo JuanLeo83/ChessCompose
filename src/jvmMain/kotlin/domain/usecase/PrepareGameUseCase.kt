@@ -1,13 +1,26 @@
-package core.usecase
+package domain.usecase
 
-import core.model.*
+import domain.boundary.GameRepository
+import domain.model.*
 
-class PrepareGameUseCase {
+class PrepareGameUseCase(
+    private val gameRepository: GameRepository
+) {
     private val totalRows = getBoardDimensions().first
     private val totalColumns = getBoardDimensions().second
 
-    operator fun invoke(): Board {
-        return Board(getCellList())
+    operator fun invoke(): GameStatus {
+        val gameStatus = GameStatus(
+            timestamp = System.currentTimeMillis(),
+            board = Board(getCellList()),
+            whitePiecesInBoard = 16,
+            blackPiecesInBoard = 16,
+            currentTeamPlaying = Team.White,
+            whiteTeamTimeRemaining = 0,
+            blackTeamTimeRemaining = 0
+        )
+        gameRepository.saveGameStatus(gameStatus)
+        return gameStatus
     }
 
     private fun getCellList(): List<Cell> {

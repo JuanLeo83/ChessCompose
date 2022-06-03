@@ -10,6 +10,8 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.window.Window
 import androidx.compose.ui.window.application
+import data.repository.GameRepositoryImpl
+import domain.usecase.PrepareGameUseCase
 
 @Composable
 @Preview
@@ -26,7 +28,20 @@ fun App() {
 }
 
 fun main() = application {
-    Window(onCloseRequest = ::exitApplication) {
-        App()
-    }
+//    Window(onCloseRequest = ::exitApplication) {
+//        App()
+//    }
+    val repository = GameRepositoryImpl()
+    val prepareGameUseCase = PrepareGameUseCase(repository)
+    val gameStatus = prepareGameUseCase()
+    println(gameStatus)
+
+    val current = repository.getCurrentGameStatus()
+    println(current)
+
+    val retrievedGameStatus = repository.getGameStatus(gameStatus.timestamp)
+    println(retrievedGameStatus)
+
+    val mostRecent = repository.getMostRecentGameSaved()
+    println(mostRecent)
 }

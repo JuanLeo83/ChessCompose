@@ -1,9 +1,9 @@
-package core.usecase
+package domain.usecase
 
-import core.model.Cell
-import core.model.MovementResult
-import core.model.Movements
-import core.model.Team
+import domain.model.Cell
+import domain.model.MovementResult
+import domain.model.Movements
+import domain.model.Team
 import utils.Either
 
 class GetListOfMovementsUseCase(
@@ -11,20 +11,20 @@ class GetListOfMovementsUseCase(
     private val getTravelMovementListUseCase: GetTravelMovementListUseCase,
     private val getAttackMovementListUseCase: GetAttackMovementListUseCase
 ) {
-    operator fun invoke(playerTeam: Team, origin: Cell): Either<Movements, MovementResult> {
+    operator fun invoke(timestamp: Long, playerTeam: Team, origin: Cell): Either<Movements, MovementResult> {
         val checkOriginResult = checkOriginCellUseCase(playerTeam, origin)
 
         return if (checkOriginResult == MovementResult.Success) {
-            Either.Success(getListOfMovements(playerTeam, origin))
+            Either.Success(getListOfMovements(timestamp, playerTeam, origin))
         } else {
             Either.Failure(checkOriginResult)
         }
     }
 
-    private fun getListOfMovements(playerTeam: Team, origin: Cell): Movements {
+    private fun getListOfMovements(timestamp: Long, playerTeam: Team, origin: Cell): Movements {
         return origin.piece?.let {
-            val travelResult = getTravelMovementListUseCase(playerTeam, origin)
-            val attackResult = getAttackMovementListUseCase(playerTeam, origin)
+            val travelResult = getTravelMovementListUseCase(timestamp, playerTeam, origin)
+            val attackResult = getAttackMovementListUseCase(timestamp, playerTeam, origin)
 
             var travelCells = listOf<Cell>()
             var attackCells = listOf<Cell>()

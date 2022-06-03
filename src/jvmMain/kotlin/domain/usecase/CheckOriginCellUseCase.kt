@@ -1,8 +1,8 @@
-package core.usecase
+package domain.usecase
 
-import core.model.Cell
-import core.model.MovementResult
-import core.model.Team
+import domain.model.Cell
+import domain.model.MovementResult
+import domain.model.Team
 
 class CheckOriginCellUseCase {
     operator fun invoke(team: Team, cell: Cell): MovementResult {

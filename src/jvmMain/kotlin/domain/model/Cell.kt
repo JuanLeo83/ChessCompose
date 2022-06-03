@@ -1,4 +1,4 @@
-package core.model
+package domain.model
 
 data class Cell(
     val name: String,

@@ -1,4 +1,4 @@
-package core.model
+package domain.model
 
 const val moveUntilObstacle: Int = -1
 

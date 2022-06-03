@@ -1,4 +1,4 @@
-package core.model
+package domain.model
 
 data class Movements(
     val travel: List<Cell> = emptyList(),

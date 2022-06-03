@@ -1,4 +1,4 @@
-package core.model
+package domain.model
 
 sealed class Direction(val rowStep: Int, val columnStep: Int) {
     object North: Direction(-1, 0)

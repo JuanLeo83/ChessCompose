@@ -1,19 +1,19 @@
-package core.usecase
+package domain.usecase
 
-import core.model.*
+import domain.model.*
 import utils.Either
 
 class GetAttackMovementListUseCase(
     private val getCellListInDirection: GetCellListInDirection,
     private val checkMovementPossibleUseCase: CheckMovementPossibleUseCase
 ) {
-    operator fun invoke(playerTeam: Team, origin: Cell): Either<List<Cell>, MovementResult> {
+    operator fun invoke(timestamp: Long, playerTeam: Team, origin: Cell): Either<List<Cell>, MovementResult> {
         return origin.piece?.let { piece ->
             val movements = mutableListOf<Cell>()
 
             val attackDirections = piece.type.getAttackDirections(playerTeam)
             attackDirections.forEach { direction ->
-                movements.addAll(getAttackMovements(playerTeam, origin, direction, piece))
+                movements.addAll(getAttackMovements(timestamp, playerTeam, origin, direction, piece))
             }
 
             Either.Success(movements)
@@ -21,6 +21,7 @@ class GetAttackMovementListUseCase(
     }
 
     private fun getAttackMovements(
+        timestamp: Long,
         playerTeam: Team,
         origin: Cell,
         direction: Direction,
@@ -28,7 +29,7 @@ class GetAttackMovementListUseCase(
     ): List<Cell> {
         val movements = mutableListOf<Cell>()
 
-        getCellListInDirection(origin, direction, piece).forEach breaking@ { cell ->
+        getCellListInDirection(timestamp, origin, direction, piece).forEach breaking@ { cell ->
             if (checkMovementPossibleUseCase(playerTeam, origin, cell) is MovementResult.PieceOfOpponentInDestiny) {
                 movements.add(cell)
                 return@breaking

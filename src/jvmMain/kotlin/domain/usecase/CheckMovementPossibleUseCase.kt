@@ -1,9 +1,9 @@
-package core.usecase
+package domain.usecase
 
-import core.model.Cell
-import core.model.MovementResult
-import core.model.Team
-import core.model.getBoardDimensions
+import domain.model.Cell
+import domain.model.MovementResult
+import domain.model.Team
+import domain.model.getBoardDimensions
 
 class CheckMovementPossibleUseCase(
     private val checkOriginCellUseCase: CheckOriginCellUseCase

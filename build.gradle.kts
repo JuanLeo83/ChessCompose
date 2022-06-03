@@ -5,6 +5,7 @@ import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 plugins {
     kotlin("multiplatform")
     id("org.jetbrains.compose")
+    kotlin("plugin.serialization")
 }
 
 group = "com.jgpl"
@@ -27,6 +28,10 @@ kotlin {
         val jvmMain by getting {
             dependencies {
                 implementation(compose.desktop.currentOs)
+                implementation("org.kodein.db:kodein-db-jvm:0.8.1-beta")
+                implementation("org.kodein.db:kodein-db-serializer-kotlinx:0.8.1-beta")
+                implementation("org.kodein.db:kodein-leveldb-jni-jvm-windows:0.8.1-beta")
+                implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
             }
         }
         val jvmTest by getting

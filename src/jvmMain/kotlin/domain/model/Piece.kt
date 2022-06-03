@@ -1,10 +1,10 @@
-package core.model
+package domain.model
 
 data class Piece(
     val type: PieceType,
     val team: Team,
     val isAlive: Boolean,
-    val cellName: String
+    val cellName: String?
 )
 
 val listOfAllPieces = listOf(
