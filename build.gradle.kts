@@ -32,10 +32,17 @@ kotlin {
                 // Dependency injection
                 implementation("io.insert-koin:koin-core:3.2.0")
 
+                // Navigation - https://voyager.adriel.cafe/
+                val voyagerVersion = "1.0.0-rc2"
+                implementation("cafe.adriel.voyager:voyager-navigator:$voyagerVersion")
+                implementation("cafe.adriel.voyager:voyager-transitions:$voyagerVersion")
+                implementation("cafe.adriel.voyager:voyager-koin:$voyagerVersion")
+
                 // Database
-                implementation("org.kodein.db:kodein-db-jvm:0.8.1-beta")
-                implementation("org.kodein.db:kodein-db-serializer-kotlinx:0.8.1-beta")
-                implementation("org.kodein.db:kodein-leveldb-jni-jvm-windows:0.8.1-beta")
+                val kodeinDBVersion = "0.8.1-beta"
+                implementation("org.kodein.db:kodein-db-jvm:$kodeinDBVersion")
+                implementation("org.kodein.db:kodein-db-serializer-kotlinx:$kodeinDBVersion")
+                implementation("org.kodein.db:kodein-leveldb-jni-jvm-windows:$kodeinDBVersion")
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.3")
             }
         }
