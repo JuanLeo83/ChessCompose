@@ -9,10 +9,11 @@ class PrepareGameUseCase(
     private val totalRows = getBoardDimensions().first
     private val totalColumns = getBoardDimensions().second
 
-    operator fun invoke(): GameStatus {
+    operator fun invoke(playerTeam: Team): GameStatus {
         val gameStatus = GameStatus(
             timestamp = System.currentTimeMillis(),
             board = Board(getCellList()),
+            playerTeam = playerTeam,
             whitePiecesInBoard = 16,
             blackPiecesInBoard = 16,
             currentTeamPlaying = Team.White,

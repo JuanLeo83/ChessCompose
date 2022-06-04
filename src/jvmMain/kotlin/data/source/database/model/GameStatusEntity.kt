@@ -6,6 +6,7 @@ import org.kodein.db.model.Id
 data class GameStatusEntity(
     @Id val timestamp: Long,
     val board: BoardEntity,
+    val playerTeam: String,
     val whitePiecesRemaining: Int,
     val blackPiecesRemaining: Int,
     val currentTeamPlaying: String,

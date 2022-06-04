@@ -6,6 +6,7 @@ import domain.model.*
 fun mapGameStatusToDomain(gameStatusEntity: GameStatusEntity): GameStatus {
     return GameStatus(
         board = mapBoardToDomain(gameStatusEntity.board),
+        playerTeam = mapTeamToDomain(gameStatusEntity.playerTeam),
         whitePiecesInBoard = gameStatusEntity.whitePiecesRemaining,
         blackPiecesInBoard = gameStatusEntity.blackPiecesRemaining,
         currentTeamPlaying = mapTeamToDomain(gameStatusEntity.currentTeamPlaying),

@@ -13,6 +13,7 @@ fun mapGameStatusToEntity(gameStatus: GameStatus): GameStatusEntity {
     return GameStatusEntity(
         timestamp = gameStatus.timestamp,
         board = mapBoardToEntity(gameStatus.board),
+        playerTeam = gameStatus.playerTeam.toString(),
         whitePiecesRemaining = gameStatus.whitePiecesInBoard,
         blackPiecesRemaining = gameStatus.blackPiecesInBoard,
         currentTeamPlaying = gameStatus.currentTeamPlaying.toString(),

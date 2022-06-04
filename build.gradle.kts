@@ -1,6 +1,5 @@
 import org.jetbrains.compose.compose
 import org.jetbrains.compose.desktop.application.dsl.TargetFormat
-import org.jetbrains.kotlin.gradle.tasks.KotlinCompile
 
 plugins {
     kotlin("multiplatform")
@@ -31,12 +30,6 @@ kotlin {
 
                 // Dependency injection
                 implementation("io.insert-koin:koin-core:3.2.0")
-
-                // Navigation - https://voyager.adriel.cafe/
-                val voyagerVersion = "1.0.0-rc2"
-                implementation("cafe.adriel.voyager:voyager-navigator:$voyagerVersion")
-                implementation("cafe.adriel.voyager:voyager-transitions:$voyagerVersion")
-                implementation("cafe.adriel.voyager:voyager-koin:$voyagerVersion")
 
                 // Database
                 val kodeinDBVersion = "0.8.1-beta"

@@ -5,6 +5,7 @@ import domain.boundary.GameRepository
 import domain.usecase.*
 import org.koin.core.context.startKoin
 import org.koin.dsl.module
+import presentation.screen.board.BoardScreenModel
 
 fun initKoin() = startKoin {
     modules(
@@ -15,7 +16,7 @@ fun initKoin() = startKoin {
 }
 
 private val presentationModule = module {
-
+    factory { BoardScreenModel(get()) }
 }
 
 private val domainModule = module {
